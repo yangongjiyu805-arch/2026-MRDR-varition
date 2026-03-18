@@ -1,0 +1,111 @@
+#!/bin/bash
+#SBATCH --partition=gpu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+#SBATCH --gres=gpu:1
+#SBATCH --time=72:00:00
+#SBATCH --comment=public_cluster
+#SBATCH --job-name=migra_v1
+#SBATCH --output=migra_v1_%j.out
+#SBATCH --error=migra_v1_%j.err
+
+set -euo pipefail
+
+source ~/ygjy_apps/miniconda3/etc/profile.d/conda.sh
+conda activate ~/YGJY/envs/env_1
+
+# 中文说明：
+# 1. 这是 scMIGRA-v1 的正式训练脚本，默认训练完成后会顺手跑一次评估。
+# 2. 训练阶段不使用 cell type 标签做监督；标签只在 metrics.py 里用于评估。
+# 3. 如果你只想训练不想评估，把 RUN_METRICS_AFTER_TRAIN 设成 false 即可。
+BASE_DIR=/home/u202532803066/YGJY/MRDR_1/src
+MAIN_PY="$BASE_DIR/scMIGRA/main_migra.py"
+METRICS_PY="$BASE_DIR/scMIGRA/metrics.py"
+INPUT_H5AD=/home/u202532803066/YGJY/MRDR/muto_data_out/feature_aligned.h5ad
+OUTPUT_H5AD=/home/u202532803066/YGJY/MRDR_1/src/scMIGRA/out/muto_migra_v1.h5ad
+METRICS_OUTPUT_DIR="$(dirname "$OUTPUT_H5AD")/metrics"
+RUN_METRICS_AFTER_TRAIN="${RUN_METRICS_AFTER_TRAIN:-true}"
+
+if [[ ! -f "$MAIN_PY" ]]; then
+  echo "ERROR: main_migra.py not found: $MAIN_PY"
+  exit 1
+fi
+
+if [[ ! -f "$INPUT_H5AD" ]]; then
+  echo "ERROR: input h5ad not found: $INPUT_H5AD"
+  exit 1
+fi
+
+mkdir -p "$(dirname "$OUTPUT_H5AD")"
+mkdir -p "$METRICS_OUTPUT_DIR"
+
+export MRDR_SRC_DIR="$BASE_DIR"
+export MRDR_INPUT_H5AD="$INPUT_H5AD"
+export MRDR_OUTPUT_H5AD="$OUTPUT_H5AD"
+export MRDR_RANDOM_SEED="20260318"
+export MRDR_INPUT_LAYER="counts"
+export MRDR_MODALITY_KEY="modality"
+export MRDR_BATCH_KEY="batch"
+
+# ===== 第一版建议先从这批超参数起步 =====
+export MRDR_HIDDEN_LAYERS="256,128"
+export MRDR_LATENT_SHARED="20"
+export MRDR_LATENT_SPECIFIC="16"
+export MRDR_LATENT_TECH="8"
+export MRDR_NUM_PROGRAMS="32"
+
+export MRDR_BETA_MOD="1.0"
+export MRDR_BETA_TECH="1.0"
+export MRDR_LAMBDA_PROGRAM="1.0"
+export MRDR_LAMBDA_TRANSPORT="0.8"
+export MRDR_LAMBDA_CYCLE="0.4"
+export MRDR_LAMBDA_BATCH_IND="0.1"
+
+export MRDR_PROGRAM_SPARSITY_WEIGHT="1.0"
+export MRDR_PROGRAM_ORTHOGONALITY_WEIGHT="1.0"
+export MRDR_PROGRAM_BALANCE_WEIGHT="0.1"
+
+export MRDR_ANCHOR_TOPK="2"
+export MRDR_LOCAL_K="6"
+export MRDR_ANCHOR_SCORE_QUANTILE="0.75"
+export MRDR_MAX_ANCHORS="24"
+export MRDR_TRANSPORT_TEMPERATURE="0.2"
+export MRDR_TRANSPORT_PROFILE_WEIGHT="0.5"
+export MRDR_TRANSPORT_GRAPH_WEIGHT="0.5"
+export MRDR_CROSS_BATCH_BONUS="0.05"
+
+export MRDR_DROPOUT_RATE="0.2"
+export MRDR_EPOCH_NUM="100"
+export MRDR_BATCH_SIZE="128"
+export MRDR_LR="1e-3"
+export MRDR_ADAPTLR="true"
+export MRDR_WARMUP_EPOCHS="10"
+export MRDR_EARLY_STOPPING="false"
+export MRDR_VALID_PROP="0.0"
+export MRDR_DISTRIBUTION="ZINB"
+# ======================================
+
+echo "===== scMIGRA-v1 training started at $(date) ====="
+python "$MAIN_PY"
+echo "===== scMIGRA-v1 training finished at $(date) ====="
+
+if [[ "$RUN_METRICS_AFTER_TRAIN" == "true" ]]; then
+  export MRDR_METRICS_INPUT_H5AD="$OUTPUT_H5AD"
+  export MRDR_METRICS_OUTPUT_DIR="$METRICS_OUTPUT_DIR"
+  export MRDR_METRICS_NJOBS="${MRDR_METRICS_NJOBS:-12}"
+  export MRDR_METRICS_BATCH_KEY="${MRDR_METRICS_BATCH_KEY:-batch}"
+  export MRDR_METRICS_MODALITY_KEY="${MRDR_METRICS_MODALITY_KEY:-modality}"
+  export MRDR_METRICS_TAG="${MRDR_METRICS_TAG:-migra_v1_${SLURM_JOB_ID:-local}}"
+  export MRDR_METRICS_METHOD_PREFIX="${MRDR_METRICS_METHOD_PREFIX:-scMIGRA-v1}"
+  export MRDR_METRICS_MODALITY_MAP="${MRDR_METRICS_MODALITY_MAP:-0=RNA,1=ATAC}"
+  export MRDR_METRICS_EMBEDDINGS="${MRDR_METRICS_EMBEDDINGS:-latent_shared=Shared;concat:latent_shared+latent_specific=SharedSpecific;program_assignments=Programs}"
+
+  echo "===== scMIGRA-v1 metrics started at $(date) ====="
+  if [[ -f "$METRICS_PY" ]]; then
+    python "$METRICS_PY" || echo "WARNING: metrics.py failed, but training outputs are already saved."
+  else
+    echo "WARNING: metrics.py not found: $METRICS_PY"
+  fi
+  echo "===== scMIGRA-v1 metrics finished at $(date) ====="
+fi

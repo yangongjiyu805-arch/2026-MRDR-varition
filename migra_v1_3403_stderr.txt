@@ -1,0 +1,2 @@
+/home/u202532803066/YGJY/envs/env_1/lib/python3.11/site-packages/anndata/_core/anndata.py:1796: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")

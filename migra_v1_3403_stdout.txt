@@ -1,0 +1,120 @@
+===== scMIGRA-v1 training started at Wed Mar 18 15:24:39 CST 2026 =====
+[MIGRA_CONFIG] random_seed=20260318
+[MIGRA_CONFIG] modality_key=modality, batch_key=batch
+[MIGRA_CONFIG] input_layer=counts
+[MIGRA_CONFIG] detected label key 'cell_type', but scMIGRA training keeps it out of the model to remain label-free.
+[MIGRA_CONFIG] hidden_layers= [256, 128]
+[MIGRA_CONFIG] latent_shared=20, latent_specific=16, latent_tech=8, num_programs=32, dropout=0.2
+[MIGRA_CONFIG] beta_mod=1.0, beta_tech=1.0, lambda_program=1.0, lambda_transport=0.8, lambda_cycle=0.4, lambda_batch_ind=0.1
+[MIGRA_CONFIG] anchor_topk=2, local_k=6, score_quantile=0.75, max_anchors=24, temp=0.2, profile_w=0.5, graph_w=0.5, cross_batch_bonus=0.05
+[MIGRA_CONFIG] epoch_num=100, batch_size=128, lr=0.001, adaptlr=True, warmup_epochs=10, early_stopping=False, valid_prop=0.0, distribution=ZINB
+using cuda
+Training start!
+epoch 1: loss=3560.4543, recon=3550.5850, kl_mod=4.5621, kl_tech=5.0323, program=0.2748, transport=0.0779, cycle=0.0041, batch_ind=0.0071, anchor_cov=0.025
+epoch 2: loss=3442.6391, recon=3433.6382, kl_mod=3.6214, kl_tech=5.1044, program=0.2746, transport=0.0620, cycle=0.0053, batch_ind=0.0074, anchor_cov=0.023
+epoch 3: loss=3417.9584, recon=3409.8155, kl_mod=2.7902, kl_tech=5.0695, program=0.2813, transport=0.0602, cycle=0.0029, batch_ind=0.0070, anchor_cov=0.022
+epoch 4: loss=3401.2295, recon=3393.3954, kl_mod=2.5004, kl_tech=5.0338, program=0.2963, transport=0.0498, cycle=0.0024, batch_ind=0.0067, anchor_cov=0.021
+epoch 5: loss=3391.4501, recon=3383.7019, kl_mod=2.4572, kl_tech=4.9829, program=0.3023, transport=0.0441, cycle=0.0019, batch_ind=0.0066, anchor_cov=0.021
+epoch 6: loss=3383.5719, recon=3375.7318, kl_mod=2.5614, kl_tech=4.9589, program=0.3116, transport=0.0395, cycle=0.0015, batch_ind=0.0065, anchor_cov=0.025
+epoch 7: loss=3376.8036, recon=3368.9566, kl_mod=2.6223, kl_tech=4.8979, program=0.3160, transport=0.0359, cycle=0.0016, batch_ind=0.0067, anchor_cov=0.026
+epoch 8: loss=3372.8081, recon=3364.9065, kl_mod=2.6891, kl_tech=4.8804, program=0.3198, transport=0.0301, cycle=0.0014, batch_ind=0.0068, anchor_cov=0.028
+epoch 9: loss=3368.4325, recon=3360.5146, kl_mod=2.7453, kl_tech=4.8335, program=0.3244, transport=0.0272, cycle=0.0011, batch_ind=0.0067, anchor_cov=0.030
+epoch 10: loss=3364.7385, recon=3356.8084, kl_mod=2.8193, kl_tech=4.7634, program=0.3299, transport=0.0255, cycle=0.0011, batch_ind=0.0069, anchor_cov=0.030
+epoch 11: loss=3362.3114, recon=3354.3739, kl_mod=2.8616, kl_tech=4.7223, program=0.3331, transport=0.0241, cycle=0.0011, batch_ind=0.0067, anchor_cov=0.031
+epoch 12: loss=3360.0065, recon=3352.0517, kl_mod=2.8969, kl_tech=4.7017, program=0.3360, transport=0.0237, cycle=0.0012, batch_ind=0.0068, anchor_cov=0.032
+epoch 13: loss=3358.0552, recon=3350.1476, kl_mod=2.9271, kl_tech=4.6223, program=0.3381, transport=0.0238, cycle=0.0011, batch_ind=0.0069, anchor_cov=0.032
+epoch 14: loss=3356.2192, recon=3348.3061, kl_mod=2.9435, kl_tech=4.6045, program=0.3442, transport=0.0247, cycle=0.0012, batch_ind=0.0066, anchor_cov=0.032
+epoch 15: loss=3354.7495, recon=3346.8673, kl_mod=2.9152, kl_tech=4.5986, program=0.3453, transport=0.0274, cycle=0.0012, batch_ind=0.0066, anchor_cov=0.033
+epoch 16: loss=3353.1938, recon=3345.3590, kl_mod=2.8938, kl_tech=4.5713, program=0.3461, transport=0.0280, cycle=0.0014, batch_ind=0.0066, anchor_cov=0.033
+epoch 17: loss=3352.0689, recon=3344.2264, kl_mod=2.9009, kl_tech=4.5633, program=0.3507, transport=0.0327, cycle=0.0016, batch_ind=0.0066, anchor_cov=0.033
+epoch 18: loss=3351.4362, recon=3343.6364, kl_mod=2.8812, kl_tech=4.5349, program=0.3519, transport=0.0380, cycle=0.0016, batch_ind=0.0064, anchor_cov=0.032
+epoch 19: loss=3350.6235, recon=3342.8184, kl_mod=2.8760, kl_tech=4.5353, program=0.3581, transport=0.0429, cycle=0.0017, batch_ind=0.0063, anchor_cov=0.032
+epoch 20: loss=3349.4470, recon=3341.6514, kl_mod=2.8680, kl_tech=4.5269, program=0.3628, transport=0.0457, cycle=0.0018, batch_ind=0.0061, anchor_cov=0.032
+epoch 21: loss=3348.5841, recon=3340.8007, kl_mod=2.8635, kl_tech=4.5147, program=0.3652, transport=0.0484, cycle=0.0018, batch_ind=0.0063, anchor_cov=0.033
+epoch 22: loss=3348.0363, recon=3340.2611, kl_mod=2.8692, kl_tech=4.4962, program=0.3701, transport=0.0477, cycle=0.0020, batch_ind=0.0060, anchor_cov=0.033
+epoch 23: loss=3347.6233, recon=3339.8541, kl_mod=2.8362, kl_tech=4.5169, program=0.3764, transport=0.0480, cycle=0.0019, batch_ind=0.0060, anchor_cov=0.032
+epoch 24: loss=3346.6653, recon=3338.9558, kl_mod=2.7943, kl_tech=4.4946, program=0.3796, transport=0.0494, cycle=0.0020, batch_ind=0.0059, anchor_cov=0.031
+epoch 25: loss=3346.2276, recon=3338.5296, kl_mod=2.7803, kl_tech=4.4948, program=0.3824, transport=0.0488, cycle=0.0020, batch_ind=0.0060, anchor_cov=0.031
+epoch 26: loss=3345.8550, recon=3338.1695, kl_mod=2.7658, kl_tech=4.4934, program=0.3849, transport=0.0501, cycle=0.0019, batch_ind=0.0058, anchor_cov=0.031
+epoch 27: loss=3345.0036, recon=3337.3368, kl_mod=2.7504, kl_tech=4.4888, program=0.3871, transport=0.0490, cycle=0.0020, batch_ind=0.0058, anchor_cov=0.032
+epoch 28: loss=3344.9936, recon=3337.3806, kl_mod=2.7123, kl_tech=4.4726, program=0.3908, transport=0.0450, cycle=0.0020, batch_ind=0.0057, anchor_cov=0.033
+epoch 29: loss=3343.8584, recon=3336.2465, kl_mod=2.6930, kl_tech=4.4901, program=0.3887, transport=0.0481, cycle=0.0022, batch_ind=0.0056, anchor_cov=0.033
+epoch 30: loss=3343.6758, recon=3336.0617, kl_mod=2.6879, kl_tech=4.4947, program=0.3945, transport=0.0445, cycle=0.0022, batch_ind=0.0056, anchor_cov=0.033
+epoch 31: loss=3342.9985, recon=3335.4175, kl_mod=2.6725, kl_tech=4.4770, program=0.3954, transport=0.0435, cycle=0.0021, batch_ind=0.0055, anchor_cov=0.033
+epoch 32: loss=3342.2447, recon=3334.6680, kl_mod=2.6605, kl_tech=4.4823, program=0.3981, transport=0.0432, cycle=0.0021, batch_ind=0.0052, anchor_cov=0.034
+epoch 33: loss=3342.0802, recon=3334.5513, kl_mod=2.6349, kl_tech=4.4614, program=0.3987, transport=0.0406, cycle=0.0021, batch_ind=0.0054, anchor_cov=0.034
+epoch 34: loss=3341.5422, recon=3333.9649, kl_mod=2.6474, kl_tech=4.4971, program=0.4007, transport=0.0385, cycle=0.0021, batch_ind=0.0053, anchor_cov=0.035
+epoch 35: loss=3341.0030, recon=3333.4742, kl_mod=2.6361, kl_tech=4.4598, program=0.4000, transport=0.0395, cycle=0.0019, batch_ind=0.0054, anchor_cov=0.035
+epoch 36: loss=3341.4953, recon=3333.9274, kl_mod=2.6491, kl_tech=4.4862, program=0.4007, transport=0.0382, cycle=0.0020, batch_ind=0.0054, anchor_cov=0.036
+epoch 37: loss=3340.9758, recon=3333.4105, kl_mod=2.6436, kl_tech=4.4859, program=0.4037, transport=0.0384, cycle=0.0020, batch_ind=0.0053, anchor_cov=0.036
+epoch 38: loss=3340.3852, recon=3332.7949, kl_mod=2.6476, kl_tech=4.5059, program=0.4066, transport=0.0363, cycle=0.0019, batch_ind=0.0051, anchor_cov=0.036
+epoch 39: loss=3339.7980, recon=3332.2514, kl_mod=2.6210, kl_tech=4.4891, program=0.4063, transport=0.0360, cycle=0.0020, batch_ind=0.0052, anchor_cov=0.036
+epoch 40: loss=3340.5063, recon=3332.9161, kl_mod=2.6463, kl_tech=4.5053, program=0.4075, transport=0.0373, cycle=0.0021, batch_ind=0.0052, anchor_cov=0.036
+epoch 41: loss=3339.8864, recon=3332.3132, kl_mod=2.6522, kl_tech=4.4818, program=0.4075, transport=0.0380, cycle=0.0020, batch_ind=0.0051, anchor_cov=0.035
+epoch 42: loss=3339.0869, recon=3331.4795, kl_mod=2.6489, kl_tech=4.5192, program=0.4105, transport=0.0343, cycle=0.0019, batch_ind=0.0050, anchor_cov=0.036
+epoch 43: loss=3338.5465, recon=3330.9764, kl_mod=2.6330, kl_tech=4.4942, program=0.4134, transport=0.0352, cycle=0.0019, batch_ind=0.0049, anchor_cov=0.036
+epoch 44: loss=3338.0977, recon=3330.4880, kl_mod=2.6759, kl_tech=4.4878, program=0.4163, transport=0.0356, cycle=0.0020, batch_ind=0.0049, anchor_cov=0.036
+epoch 45: loss=3338.2112, recon=3330.6207, kl_mod=2.6680, kl_tech=4.4757, program=0.4175, transport=0.0349, cycle=0.0020, batch_ind=0.0048, anchor_cov=0.036
+epoch 46: loss=3337.6106, recon=3330.0136, kl_mod=2.6856, kl_tech=4.4607, program=0.4197, transport=0.0370, cycle=0.0020, batch_ind=0.0047, anchor_cov=0.036
+epoch 47: loss=3337.1977, recon=3329.5543, kl_mod=2.7055, kl_tech=4.4886, program=0.4203, transport=0.0345, cycle=0.0020, batch_ind=0.0048, anchor_cov=0.036
+epoch 48: loss=3337.1037, recon=3329.4715, kl_mod=2.7220, kl_tech=4.4601, program=0.4207, transport=0.0351, cycle=0.0020, batch_ind=0.0047, anchor_cov=0.036
+epoch 49: loss=3336.7486, recon=3329.0813, kl_mod=2.7309, kl_tech=4.4827, program=0.4237, transport=0.0359, cycle=0.0020, batch_ind=0.0047, anchor_cov=0.035
+epoch 50: loss=3336.8644, recon=3329.1953, kl_mod=2.7488, kl_tech=4.4669, program=0.4255, transport=0.0333, cycle=0.0020, batch_ind=0.0047, anchor_cov=0.035
+epoch 51: loss=3336.2104, recon=3328.5425, kl_mod=2.7378, kl_tech=4.4756, program=0.4276, transport=0.0321, cycle=0.0020, batch_ind=0.0045, anchor_cov=0.035
+epoch 52: loss=3335.8624, recon=3328.1842, kl_mod=2.7524, kl_tech=4.4700, program=0.4280, transport=0.0332, cycle=0.0020, batch_ind=0.0045, anchor_cov=0.035
+epoch 53: loss=3335.6625, recon=3327.9721, kl_mod=2.7545, kl_tech=4.4790, program=0.4281, transport=0.0343, cycle=0.0021, batch_ind=0.0045, anchor_cov=0.036
+epoch 54: loss=3335.6256, recon=3327.9397, kl_mod=2.7677, kl_tech=4.4626, program=0.4298, transport=0.0306, cycle=0.0019, batch_ind=0.0044, anchor_cov=0.035
+epoch 55: loss=3335.6166, recon=3327.9172, kl_mod=2.7844, kl_tech=4.4570, program=0.4313, transport=0.0318, cycle=0.0021, batch_ind=0.0045, anchor_cov=0.035
+epoch 56: loss=3335.2821, recon=3327.5757, kl_mod=2.7735, kl_tech=4.4749, program=0.4318, transport=0.0311, cycle=0.0021, batch_ind=0.0044, anchor_cov=0.035
+epoch 57: loss=3334.7546, recon=3327.0264, kl_mod=2.7948, kl_tech=4.4750, program=0.4333, transport=0.0298, cycle=0.0021, batch_ind=0.0044, anchor_cov=0.035
+epoch 58: loss=3334.7355, recon=3327.0083, kl_mod=2.8019, kl_tech=4.4663, program=0.4339, transport=0.0299, cycle=0.0020, batch_ind=0.0043, anchor_cov=0.035
+epoch 59: loss=3334.3673, recon=3326.6792, kl_mod=2.7711, kl_tech=4.4568, program=0.4340, transport=0.0310, cycle=0.0021, batch_ind=0.0044, anchor_cov=0.036
+epoch 60: loss=3334.2563, recon=3326.5371, kl_mod=2.7913, kl_tech=4.4683, program=0.4350, transport=0.0292, cycle=0.0021, batch_ind=0.0043, anchor_cov=0.035
+epoch 61: loss=3334.1635, recon=3326.4672, kl_mod=2.7756, kl_tech=4.4599, program=0.4366, transport=0.0286, cycle=0.0020, batch_ind=0.0043, anchor_cov=0.036
+epoch 62: loss=3333.7761, recon=3326.0505, kl_mod=2.7895, kl_tech=4.4755, program=0.4366, transport=0.0284, cycle=0.0021, batch_ind=0.0043, anchor_cov=0.036
+epoch 63: loss=3333.9351, recon=3326.2348, kl_mod=2.7726, kl_tech=4.4653, program=0.4385, transport=0.0284, cycle=0.0020, batch_ind=0.0042, anchor_cov=0.035
+epoch 64: loss=3333.0482, recon=3325.2890, kl_mod=2.7957, kl_tech=4.5001, program=0.4397, transport=0.0280, cycle=0.0020, batch_ind=0.0041, anchor_cov=0.035
+epoch 65: loss=3333.4752, recon=3325.7665, kl_mod=2.7883, kl_tech=4.4558, program=0.4410, transport=0.0279, cycle=0.0020, batch_ind=0.0042, anchor_cov=0.035
+epoch 66: loss=3333.3303, recon=3325.6257, kl_mod=2.7756, kl_tech=4.4662, program=0.4404, transport=0.0266, cycle=0.0019, batch_ind=0.0042, anchor_cov=0.035
+epoch 67: loss=3332.8447, recon=3325.1177, kl_mod=2.7816, kl_tech=4.4816, program=0.4418, transport=0.0260, cycle=0.0020, batch_ind=0.0042, anchor_cov=0.035
+epoch 68: loss=3333.2432, recon=3325.5024, kl_mod=2.7945, kl_tech=4.4806, program=0.4423, transport=0.0277, cycle=0.0021, batch_ind=0.0042, anchor_cov=0.035
+epoch 69: loss=3332.9338, recon=3325.1942, kl_mod=2.7949, kl_tech=4.4779, program=0.4429, transport=0.0282, cycle=0.0021, batch_ind=0.0041, anchor_cov=0.035
+epoch 70: loss=3332.5117, recon=3324.7896, kl_mod=2.7827, kl_tech=4.4728, program=0.4433, transport=0.0276, cycle=0.0020, batch_ind=0.0041, anchor_cov=0.035
+epoch 71: loss=3332.6199, recon=3324.8840, kl_mod=2.7789, kl_tech=4.4895, program=0.4447, transport=0.0270, cycle=0.0020, batch_ind=0.0040, anchor_cov=0.035
+epoch 72: loss=3332.7446, recon=3325.0438, kl_mod=2.7648, kl_tech=4.4692, program=0.4442, transport=0.0268, cycle=0.0020, batch_ind=0.0040, anchor_cov=0.035
+epoch 73: loss=3332.2532, recon=3324.5331, kl_mod=2.7685, kl_tech=4.4835, program=0.4450, transport=0.0274, cycle=0.0021, batch_ind=0.0041, anchor_cov=0.034
+epoch 74: loss=3332.3118, recon=3324.5903, kl_mod=2.7714, kl_tech=4.4825, program=0.4441, transport=0.0279, cycle=0.0020, batch_ind=0.0041, anchor_cov=0.034
+epoch 75: loss=3332.5669, recon=3324.8564, kl_mod=2.7780, kl_tech=4.4637, program=0.4457, transport=0.0274, cycle=0.0020, batch_ind=0.0040, anchor_cov=0.034
+epoch 76: loss=3331.9781, recon=3324.2574, kl_mod=2.7776, kl_tech=4.4740, program=0.4468, transport=0.0263, cycle=0.0020, batch_ind=0.0041, anchor_cov=0.034
+epoch 77: loss=3331.9104, recon=3324.2011, kl_mod=2.7743, kl_tech=4.4655, program=0.4465, transport=0.0272, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 78: loss=3331.7782, recon=3324.0525, kl_mod=2.7772, kl_tech=4.4786, program=0.4477, transport=0.0262, cycle=0.0021, batch_ind=0.0040, anchor_cov=0.035
+epoch 79: loss=3331.7458, recon=3324.0377, kl_mod=2.7729, kl_tech=4.4644, program=0.4477, transport=0.0274, cycle=0.0021, batch_ind=0.0040, anchor_cov=0.034
+epoch 80: loss=3331.2671, recon=3323.5269, kl_mod=2.7815, kl_tech=4.4885, program=0.4476, transport=0.0266, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.035
+epoch 81: loss=3331.5473, recon=3323.8274, kl_mod=2.7782, kl_tech=4.4702, program=0.4485, transport=0.0271, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 82: loss=3331.6467, recon=3323.9208, kl_mod=2.7819, kl_tech=4.4716, program=0.4489, transport=0.0277, cycle=0.0021, batch_ind=0.0040, anchor_cov=0.034
+epoch 83: loss=3330.8550, recon=3323.1387, kl_mod=2.7643, kl_tech=4.4808, program=0.4483, transport=0.0271, cycle=0.0020, batch_ind=0.0040, anchor_cov=0.034
+epoch 84: loss=3331.6301, recon=3323.8944, kl_mod=2.7782, kl_tech=4.4859, program=0.4487, transport=0.0271, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 85: loss=3331.1146, recon=3323.3898, kl_mod=2.7767, kl_tech=4.4766, program=0.4489, transport=0.0266, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 86: loss=3331.0487, recon=3323.3387, kl_mod=2.7681, kl_tech=4.4705, program=0.4495, transport=0.0259, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 87: loss=3331.0152, recon=3323.2909, kl_mod=2.7677, kl_tech=4.4847, program=0.4496, transport=0.0263, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 88: loss=3331.1632, recon=3323.4450, kl_mod=2.7637, kl_tech=4.4826, program=0.4498, transport=0.0262, cycle=0.0020, batch_ind=0.0038, anchor_cov=0.034
+epoch 89: loss=3330.6936, recon=3322.9717, kl_mod=2.7671, kl_tech=4.4830, program=0.4497, transport=0.0262, cycle=0.0020, batch_ind=0.0038, anchor_cov=0.033
+epoch 90: loss=3330.4203, recon=3322.7053, kl_mod=2.7737, kl_tech=4.4688, program=0.4498, transport=0.0269, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 91: loss=3331.4699, recon=3323.7596, kl_mod=2.7623, kl_tech=4.4756, program=0.4496, transport=0.0271, cycle=0.0020, batch_ind=0.0038, anchor_cov=0.034
+epoch 92: loss=3331.1657, recon=3323.4557, kl_mod=2.7670, kl_tech=4.4707, program=0.4495, transport=0.0269, cycle=0.0021, batch_ind=0.0039, anchor_cov=0.034
+epoch 93: loss=3330.5821, recon=3322.8657, kl_mod=2.7690, kl_tech=4.4750, program=0.4494, transport=0.0273, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 94: loss=3330.8570, recon=3323.1389, kl_mod=2.7703, kl_tech=4.4757, program=0.4492, transport=0.0270, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 95: loss=3330.8488, recon=3323.1299, kl_mod=2.7652, kl_tech=4.4826, program=0.4494, transport=0.0256, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 96: loss=3330.8159, recon=3323.0862, kl_mod=2.7763, kl_tech=4.4819, program=0.4494, transport=0.0261, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 97: loss=3330.9333, recon=3323.1951, kl_mod=2.7829, kl_tech=4.4842, program=0.4496, transport=0.0253, cycle=0.0020, batch_ind=0.0038, anchor_cov=0.034
+epoch 98: loss=3330.7887, recon=3323.0618, kl_mod=2.7734, kl_tech=4.4812, program=0.4495, transport=0.0270, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 99: loss=3330.9064, recon=3323.1760, kl_mod=2.7772, kl_tech=4.4820, program=0.4495, transport=0.0256, cycle=0.0020, batch_ind=0.0039, anchor_cov=0.034
+epoch 100: loss=3330.7916, recon=3323.0651, kl_mod=2.7733, kl_tech=4.4817, program=0.4495, transport=0.0259, cycle=0.0020, batch_ind=0.0040, anchor_cov=0.034
+Training finished!
+inference: loss=3316.0324
+All results recorded in adata.
+===== scMIGRA-v1 training finished at Wed Mar 18 16:32:40 CST 2026 =====
+===== scMIGRA-v1 metrics started at Wed Mar 18 16:32:40 CST 2026 =====
+ERROR: Missing dependency 'scMIGRA' required for evaluation. Please install scib-metrics in the runtime environment before running metrics.py.
+WARNING: metrics.py failed, but training outputs are already saved.
+===== scMIGRA-v1 metrics finished at Wed Mar 18 16:33:42 CST 2026 =====
